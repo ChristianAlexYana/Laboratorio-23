@@ -120,3 +120,34 @@ private int generarNivelVida(String tipo) {
         }
         return soldado;
     }
+    private void aplicarBonusTerritorio() {
+        for (Ejercito ejercito : Arrays.asList(ejercito1, ejercito2)) {
+            boolean bonus = false;
+            switch (ejercito.getReino()) {
+                case "Inglaterra":
+                    if (territorio.equals("Bosque")) bonus = true;
+                    break;
+                case "Francia":
+                    if (territorio.equals("Campo Abierto")) bonus = true;
+                    break;
+                case "Castilla-Aragón":
+                    if (territorio.equals("Montaña")) bonus = true;
+                    break;
+                case "Moros":
+                    if (territorio.equals("Desierto")) bonus = true;
+                    break;
+                case "Sacro Imperio Romano Germánico":
+                    if (territorio.equals("Bosque") || territorio.equals("Playa") || territorio.equals("Campo Abierto"))
+                        bonus = true;
+                    break;
+            }
+            if (bonus) {
+                for (Soldado s : ejercito.getSoldados()) {
+                    s.aplicarBonus();
+                }
+                System.out.println("El reino " + ejercito.getReino() + " recibe bono por territorio");
+            }
+        }
+        System.out.println();
+    }
+
