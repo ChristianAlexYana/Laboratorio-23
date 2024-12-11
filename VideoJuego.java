@@ -195,3 +195,36 @@ class EspadachinTeutonico extends Espadachin implements UnidadEspecial {
         return "ET";
     }
 }
+class EspadachinConquistador extends Espadachin implements UnidadEspecial {
+    private int nivelEvolucion;
+    private int hachasDisponibles;
+    private double tamanoHachas;
+    public EspadachinConquistador(String nombre, int nivelVida, int ataque, int defensa, String reino, double longitudEspada) {
+        super(nombre, nivelVida, ataque, defensa, reino, longitudEspada);
+        this.nivelEvolucion = 1;
+        this.hachasDisponibles = 3;
+        this.tamanoHachas = 1.0;
+    }
+    public void habilidadEspecial() {
+        if (hachasDisponibles > 0) {
+            hachasDisponibles--;
+            System.out.println(nombre + " lanza un hacha.");
+        } else {
+            System.out.println(nombre + " no tiene hachas.");
+        }
+    }
+    public int getNivelEvolucion() { return nivelEvolucion; }
+    public void evolucionar() {
+        if (nivelEvolucion < 4) {
+            nivelEvolucion++;
+            hachasDisponibles += 2;
+            tamanoHachas += 0.5;
+            System.out.println(nombre + " ha evolucionado a nivel " + nivelEvolucion);
+        } else {
+            System.out.println(nombre + " ya alcanzó el máximo nivel.");
+        }
+    }
+    public String representar() {
+        return "EC";
+    }
+}
