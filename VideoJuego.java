@@ -129,3 +129,36 @@ class EspadachinReal extends Espadachin implements UnidadEspecial {
         return "ER";
     }
 }
+class CaballeroFranco extends Caballero implements UnidadEspecial {
+    private int nivelEvolucion;
+    private int lanzasDisponibles;
+    private double tamanoLanzas;
+    public CaballeroFranco(String nombre, int nivelVida, int ataque, int defensa, String reino, String arma, boolean montado) {
+        super(nombre, nivelVida, ataque, defensa, reino, arma, montado);
+        this.nivelEvolucion = 1;
+        this.lanzasDisponibles = 3;
+        this.tamanoLanzas = 1.5;
+    }
+    public void habilidadEspecial() {
+        if (lanzasDisponibles > 0) {
+            lanzasDisponibles--;
+            System.out.println(nombre + " lanza una lanza. Lanzas restantes: " + lanzasDisponibles);
+        } else {
+            System.out.println(nombre + " no tiene lanzas.");
+        }
+    }
+    public int getNivelEvolucion() { return nivelEvolucion; }
+    public void evolucionar() {
+        if (nivelEvolucion < 4) {
+            nivelEvolucion++;
+            lanzasDisponibles += 2;
+            tamanoLanzas += 0.5;
+            System.out.println(nombre + " ha evolucionado a nivel " + nivelEvolucion);
+        } else {
+            System.out.println(nombre + " ya alcanzó el máximo nivel.");
+        }
+    }
+    public String representar() {
+        return "CF";
+    }
+}
