@@ -150,4 +150,50 @@ private int generarNivelVida(String tipo) {
         }
         System.out.println();
     }
+    public boolean moverSoldado(int fila, int columna, String direccion, Ejercito e1, Ejercito e2) {
+        if (fila < 1 || fila > TAMANIO || columna < 1 || columna > TAMANIO) {
+            System.out.println("Coordenadas fuera del mapa.");
+            return false;
+        }
+        Soldado soldado = tablero[fila - 1][columna - 1];
+        if (soldado == null) {
+            System.out.println("No hay ningún soldado en la posición especificada.");
+            return false;
+        }
+
+        int nuevaFila = fila;
+        int nuevaColumna = columna;
+        switch (direccion.toLowerCase()) {
+            case "arriba": nuevaFila -= 1; break;
+            case "abajo": nuevaFila += 1; break;
+            case "izquierda": nuevaColumna -= 1; break;
+            case "derecha": nuevaColumna += 1; break;
+            default:
+                System.out.println("Dirección inválida.");
+                return false;
+        }
+
+        if (nuevaFila < 1 || nuevaFila > TAMANIO || nuevaColumna < 1 || nuevaColumna > TAMANIO) {
+            System.out.println("Movimiento fuera del mapa.");
+            return false;
+        }
+
+        Soldado objetivo = tablero[nuevaFila - 1][nuevaColumna - 1];
+        if (objetivo == null) {
+            tablero[nuevaFila - 1][nuevaColumna - 1] = soldado;
+            tablero[fila - 1][columna - 1] = null;
+            soldado.setFila(nuevaFila);
+            soldado.setColumna(nuevaColumna);
+            System.out.println(soldado.getNombre() + " se ha movido " + direccion + ".");
+        } else {
+            if (!soldado.getReino().equals(objetivo.getReino())) {
+                System.out.println("¡Batalla!");
+                realizarBatalla(soldado, objetivo, fila - 1, columna - 1, nuevaFila - 1, nuevaColumna - 1, e1, e2);
+            } else {
+                System.out.println("No se puede mover a una posición ocupada por un soldado aliado.");
+                return false;
+            }
+        }
+        return true;
+    }
 
