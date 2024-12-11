@@ -162,3 +162,36 @@ class CaballeroFranco extends Caballero implements UnidadEspecial {
         return "CF";
     }
 }
+class EspadachinTeutonico extends Espadachin implements UnidadEspecial {
+    private int nivelEvolucion;
+    private int jabalinasDisponibles;
+    private double tamanoJabalinas;
+    public EspadachinTeutonico(String nombre, int nivelVida, int ataque, int defensa, String reino, double longitudEspada) {
+        super(nombre, nivelVida, ataque, defensa, reino, longitudEspada);
+        this.nivelEvolucion = 1;
+        this.jabalinasDisponibles = 4;
+        this.tamanoJabalinas = 1.2;
+    }
+    public void habilidadEspecial() {
+        if (jabalinasDisponibles > 0) {
+            jabalinasDisponibles--;
+            System.out.println(nombre + " lanza una jabalina.");
+        } else {
+            System.out.println(nombre + " no tiene jabalinas.");
+        }
+    }
+    public int getNivelEvolucion() { return nivelEvolucion; }
+    public void evolucionar() {
+        if (nivelEvolucion < 4) {
+            nivelEvolucion++;
+            jabalinasDisponibles += 2;
+            tamanoJabalinas += 0.5;
+            System.out.println(nombre + " ha evolucionado a nivel " + nivelEvolucion);
+        } else {
+            System.out.println(nombre + " ya alcanzó el máximo nivel.");
+        }
+    }
+    public String representar() {
+        return "ET";
+    }
+}
