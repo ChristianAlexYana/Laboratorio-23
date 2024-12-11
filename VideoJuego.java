@@ -62,3 +62,19 @@ class Arquero extends Soldado {
         return "A";
     }
 }
+class Caballero extends Soldado {
+    private String arma;
+    private boolean montado;
+    public Caballero(String nombre, int nivelVida, int ataque, int defensa, String reino, String arma, boolean montado) {
+        super(nombre, nivelVida, ataque, defensa, reino);
+        this.arma = arma;
+        this.montado = montado;
+    }
+    public String getArma() { return arma; }
+    public void setArma(String arma) { this.arma = arma; }
+    public boolean isMontado() { return montado; }
+    public void setMontado(boolean montado) { this.montado = montado; }
+    public String representar() {
+        return "C";
+    }
+}
