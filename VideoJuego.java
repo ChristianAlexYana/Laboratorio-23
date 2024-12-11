@@ -38,3 +38,15 @@ abstract class Soldado {
         this.nivelVida += 1;
     }
 }
+class Espadachin extends Soldado {
+    protected double longitudEspada;
+    public Espadachin(String nombre, int nivelVida, int ataque, int defensa, String reino, double longitudEspada) {
+        super(nombre, nivelVida, ataque, defensa, reino);
+        this.longitudEspada = longitudEspada;
+    }
+    public double getLongitudEspada() { return longitudEspada; }
+    public void setLongitudEspada(double longitudEspada) { this.longitudEspada = longitudEspada; }
+    public String representar() {
+        return "E";
+    }
+}
