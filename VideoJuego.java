@@ -196,4 +196,33 @@ private int generarNivelVida(String tipo) {
         }
         return true;
     }
+    private void realizarBatalla(Soldado atacante, Soldado defensor, int filaDefensor, int columnaDefensor, int filaNuevo, int columnaNuevo, Ejercito e1, Ejercito e2) {
+        int sumaVida = atacante.getNivelVida() + defensor.getNivelVida();
+        double probAtacante = ((double) atacante.getNivelVida() / sumaVida) * 100;
+        double probDefensor = ((double) defensor.getNivelVida() / sumaVida) * 100;
+        double aleatorio = new Random().nextDouble() * 100;
+        Soldado ganador, perdedor;
+        if (aleatorio <= probAtacante) {
+            ganador = atacante;
+            perdedor = defensor;
+        } else {
+            ganador = defensor;
+            perdedor = atacante;
+        }
+
+        tablero[filaNuevo][columnaNuevo] = ganador;
+        ganador.setFila(filaNuevo + 1);
+        ganador.setColumna(columnaNuevo + 1);
+        tablero[filaDefensor][columnaDefensor] = null;
+
+        if (e1.getSoldados().contains(perdedor)) {
+            e1.eliminarSoldado(perdedor);
+        } else {
+            e2.eliminarSoldado(perdedor);
+        }
+
+        System.out.println("Resultado de la batalla: " + ganador.getNombre() + " ha vencido a " + perdedor.getNombre() + ".");
+        System.out.println();
+    }
+}
 
