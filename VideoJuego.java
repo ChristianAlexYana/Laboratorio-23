@@ -50,3 +50,15 @@ class Espadachin extends Soldado {
         return "E";
     }
 }
+class Arquero extends Soldado {
+    private int flechasDisponibles;
+    public Arquero(String nombre, int nivelVida, int ataque, int defensa, String reino, int flechasDisponibles) {
+        super(nombre, nivelVida, ataque, defensa, reino);
+        this.flechasDisponibles = flechasDisponibles;
+    }
+    public int getFlechasDisponibles() { return flechasDisponibles; }
+    public void setFlechasDisponibles(int flechasDisponibles) { this.flechasDisponibles = flechasDisponibles; }
+    public String representar() {
+        return "A";
+    }
+}
