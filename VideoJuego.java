@@ -78,3 +78,15 @@ class Caballero extends Soldado {
         return "C";
     }
 }
+class Lancero extends Soldado {
+    protected double longitudLanza;
+    public Lancero(String nombre, int nivelVida, int ataque, int defensa, String reino, double longitudLanza) {
+        super(nombre, nivelVida, ataque, defensa, reino);
+        this.longitudLanza = longitudLanza;
+    }
+    public double getLongitudLanza() { return longitudLanza; }
+    public void setLongitudLanza(double longitudLanza) { this.longitudLanza = longitudLanza; }
+    public String representar() {
+        return "L";
+    }
+}
