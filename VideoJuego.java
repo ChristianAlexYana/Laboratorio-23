@@ -90,3 +90,42 @@ class Lancero extends Soldado {
         return "L";
     }
 }
+interface UnidadEspecial {
+    void habilidadEspecial();
+    int getNivelEvolucion();
+    void evolucionar();
+}
+
+class EspadachinReal extends Espadachin implements UnidadEspecial {
+    private int nivelEvolucion;
+    private int cuchillosDisponibles;
+    private double tamanoCuchillos;
+    public EspadachinReal(String nombre, int nivelVida, int ataque, int defensa, String reino, double longitudEspada) {
+        super(nombre, nivelVida, ataque, defensa, reino, longitudEspada);
+        this.nivelEvolucion = 1;
+        this.cuchillosDisponibles = 5;
+        this.tamanoCuchillos = 1.0;
+    }
+    public void habilidadEspecial() {
+        if (cuchillosDisponibles > 0) {
+            cuchillosDisponibles--;
+            System.out.println(nombre + " lanza un cuchillo. Cuchillos restantes: " + cuchillosDisponibles);
+        } else {
+            System.out.println(nombre + " no tiene cuchillos para lanzar.");
+        }
+    }
+    public int getNivelEvolucion() { return nivelEvolucion; }
+    public void evolucionar() {
+        if (nivelEvolucion < 4) {
+            nivelEvolucion++;
+            cuchillosDisponibles += 2;
+            tamanoCuchillos += 0.5;
+            System.out.println(nombre + " ha evolucionado a nivel " + nivelEvolucion);
+        } else {
+            System.out.println(nombre + " ya ha alcanzado el máximo nivel de evolución.");
+        }
+    }
+    public String representar() {
+        return "ER";
+    }
+}
