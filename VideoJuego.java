@@ -80,3 +80,43 @@ class Mapa {
         }
         return soldado;
     }
+private int generarNivelVida(String tipo) {
+        switch (tipo) {
+            case "Espadachin": return new Random().nextInt(3) + 8;
+            case "Arquero": return new Random().nextInt(3) + 3;
+            case "Caballero": return new Random().nextInt(3) + 10;
+            case "Lancero": return new Random().nextInt(4) + 5;
+            default: return 5;
+        }
+    }
+
+    private Soldado crearUnidadEspecial(String reino, int contador) {
+        String nombre;
+        Soldado soldado;
+        switch (reino) {
+            case "Inglaterra":
+                nombre = "ER" + contador;
+                soldado = new EspadachinReal(nombre, 12, 10, 8, reino, 1.5);
+                break;
+            case "Francia":
+                nombre = "CF" + contador;
+                soldado = new CaballeroFranco(nombre, 15, 13, 7, reino, "Espada", false);
+                break;
+            case "Sacro Imperio Romano Germánico":
+                nombre = "ET" + contador;
+                soldado = new EspadachinTeutonico(nombre, 13, 10, 8, reino, 1.4);
+                break;
+            case "Castilla-Aragón":
+                nombre = "EC" + contador;
+                soldado = new EspadachinConquistador(nombre, 14, 10, 8, reino, 1.3);
+                break;
+            case "Moros":
+                nombre = "CM" + contador;
+                soldado = new CaballeroMoro(nombre, 13, 13, 7, reino, "Lanza", true);
+                break;
+            default:
+                nombre = "E" + contador;
+                soldado = new Espadachin(nombre, generarNivelVida("Espadachin"), 10, 8, reino, 1.2);
+        }
+        return soldado;
+    }
